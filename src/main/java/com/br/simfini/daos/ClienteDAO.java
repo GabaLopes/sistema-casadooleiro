@@ -27,13 +27,17 @@ public class ClienteDAO {
 		manager.persist(cliente);
 	}
 	
+	public List<Cliente> listaCliente(){
+		return manager.createQuery("select distinct(c) from Cliente c left join fetch c.dependente ",Cliente.class).getResultList();
+	}
+	
 	public List<Cliente> lista() {
 		return manager.createQuery("select c from Cliente c ",Cliente.class).getResultList();
 		
 	}
 	
 	public Cliente find(Integer id) {
-		return manager.createQuery("select distinct(c) from Cliente c join fetch c.dependente"
+		return manager.createQuery("select distinct(c) from Cliente c left join fetch c.dependente"
 					+ " where c.id= :id" , Cliente.class)
 					.setParameter("id", id)
 					.getSingleResult();
@@ -43,11 +47,24 @@ public class ClienteDAO {
 	public void excluirCliente(Cliente cliente) {
 			
 		manager.remove(manager.getReference(Cliente.class, cliente.getId()));
+		
 	}
 
 	public void adicionaDependente(Cliente find) {
 		manager.merge(find);
 		
+	}
+
+	public void atualiza(Cliente cliente) {
+		manager.merge(cliente);
+		
+	}
+
+	public Cliente finds(int id) {
+		return manager.createQuery("select distinct(c) from Cliente c left join fetch c.dependente"
+				+ " where c.id= :id" , Cliente.class)
+				.setParameter("id", id)
+				.getSingleResult();
 	}
 
 	

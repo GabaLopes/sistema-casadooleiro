@@ -1,6 +1,7 @@
 package com.br.simfini.models;
 
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class Clinica {
 	private int id;
 	
 	private String nome;
+	
 	
 	
 	public String getNome() {

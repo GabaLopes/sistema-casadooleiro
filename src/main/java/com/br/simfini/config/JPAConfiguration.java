@@ -33,7 +33,7 @@ public class JPAConfiguration {
 	        DriverManagerDataSource dataSource = new DriverManagerDataSource();
 	        dataSource.setUsername("root");
 	        dataSource.setPassword("1234");
-	        dataSource.setUrl("jdbc:mysql://localhost:3306/simfini");
+	        dataSource.setUrl("jdbc:mysql://localhost:3306/casadooleiro");
 	        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 	        //Lançando o DataSource no Entity Manager Factory Bean
 	        factoryBean.setDataSource(dataSource);
