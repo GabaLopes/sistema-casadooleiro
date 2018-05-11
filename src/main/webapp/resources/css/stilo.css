@@ -1,0 +1,51 @@
+.lopes{
+	color:gray;
+}
+.lopes:hover{
+
+background-color: #55A8FD;
+color:white;
+
+}
+.nolink:hover{
+	
+	text-decoration: none;
+}
+.listamenu{
+	padding: 10px 10px 10px 10px;
+	text-decoration: none;
+	color:#CCCCF0;
+	list-style-type: none;
+}
+.pininternal{
+	fill: #CCA032
+}
+.menu{
+	border-radius: 5px;
+	padding-left:5%;
+	padding-right:5%;
+	padding-top:5%;
+	padding-bottom:5%;
+	color:#CCCCF0;
+}
+.menu:hover{
+	color:white;
+	text-decoration: none;
+	background-color:#55A8FD;
+}
+.imagem:hover{
+	
+
+}
+.menu2{
+	padding-left:5%;
+	padding-right:5%;
+	padding-top:5%;
+	padding-bottom:5%;
+	color:#CCCCF0;
+}
+.menu2:hover{
+	color:white;
+	text-decoration: none;
+	-webkit-filter: brightness(10);
+}
