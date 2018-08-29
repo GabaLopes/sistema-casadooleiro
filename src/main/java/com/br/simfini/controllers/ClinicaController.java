@@ -46,16 +46,19 @@ public class ClinicaController {
 			
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView gravarServico(String valor,String valorPart,String valorClinicas,ServicosMedicos servico, RedirectAttributes redirectAttributes) {
+	public ModelAndView gravarServico(String valor,String valorPart,String valorClinicas,String chString,ServicosMedicos servico, RedirectAttributes redirectAttributes) {
 		String valorOleir = valor.replace(",", ".");
+		String chCerto = chString.replace(",", ".");
 		String valorParticula = valorPart.replace(",", ".");
 		String valorClinic = valorClinicas.replace(",", ".");
+		BigDecimal chBig = new BigDecimal(chCerto);
 		BigDecimal valorOleiro = new BigDecimal(valorOleir);
 		BigDecimal valorParticular = new BigDecimal(valorParticula);
 		BigDecimal valorClinica = new BigDecimal(valorClinic);
 		servico.setValorClinica(valorClinica);
 		servico.setValorOleiro(valorOleiro);
 		servico.setValorParticular(valorParticular);
+		servico.setCh(chBig);
 		dao.gravarServico(servico);
 		
 		
@@ -111,8 +114,16 @@ public class ClinicaController {
 	}
 	@RequestMapping(value="/removerClinica",method=RequestMethod.POST)
 	public ModelAndView removerClinica(int clinica,RedirectAttributes redirectAttributes) {
+		Clinica findClinica = dao.findClinica(clinica);
+		String nome = findClinica.getNome();
+		List<ServicosMedicos> servicos = dao.atualizaClinicaServicos(nome);
+		for(ServicosMedicos servico : servicos) {
+			ServicosMedicos servico2 = servico;
+			dao.remove(servico2);
+		}
+		
 		dao.removeClinica(dao.findClinica(clinica));
-		redirectAttributes.addFlashAttribute("clinicasucesso", "Clinica alterada com sucesso !");
+		redirectAttributes.addFlashAttribute("clinicasucesso", "Clinica removida com sucesso !");
 		return new ModelAndView("redirect:/clinicas/cadastro");
 		
 	}

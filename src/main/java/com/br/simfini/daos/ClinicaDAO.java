@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.br.simfini.models.Clinica;
+import com.br.simfini.models.Marcacao;
 import com.br.simfini.models.ServicosMedicos;
 
 
@@ -80,6 +81,35 @@ public class ClinicaDAO {
 	public void removeClinica(Clinica find) {
 		Clinica merge = manager.merge(find);
 		manager.remove(merge);
+	}
+
+	public void removeServicoClinica(List<ServicosMedicos> servicos) {
+		manager.remove(servicos);
+		
+	}
+
+	public void gravarMarcacao(Marcacao marcacao) {
+		manager.persist(marcacao);
+		
+	}
+
+	public List<Marcacao> listaMarcacoes() {
+		return manager.createQuery("select m from Marcacao m ",Marcacao.class).getResultList();
+		
+	}
+
+	public Marcacao findConsulta(int id) {
+		return manager.createQuery("select distinct(m) from Marcacao m "
+				+ " where m.id= :id" , Marcacao.class)
+				.setParameter("id", id)
+				.getSingleResult();
+		
+	}
+
+	public void excluirConsulta(Marcacao findConsulta) {
+		Marcacao merge = manager.merge(findConsulta);
+		manager.remove(merge);
+		
 	}
 
 	

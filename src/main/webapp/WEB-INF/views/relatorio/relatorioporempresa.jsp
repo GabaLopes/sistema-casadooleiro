@@ -30,13 +30,13 @@
 	
 	
 	
-<title>Relatório Mensal - Clínica</title>
+<title>Relatório Vendas - Empresa </title>
 </head>
 <body>
 <br>
 <div align="center"><img id="image-1" alt="" src="../resources/imagens/logo.png" width="15%"/>
 
-<h4>Relátorio Mensal - ${vendas[0].procedimento[0].clinica}</h4>
+<h4>Relátorio Vendas - ${empresa }</h4>
 <p><strong><fmt:formatDate pattern="dd/MM/yyyy" value="${dataini}"/></strong> a <strong><fmt:formatDate pattern="dd/MM/yyyy" value="${datafim}"/></strong></p>
 </div>
 
@@ -48,15 +48,16 @@
   <thead>
     
   </thead>
+  <tbody>
   	<c:forEach items="${vendas}" varStatus="status">
-  	<tbody>
     <tr>
       <th style="background-color:#C4C4C4; width:13%">Data Atendimento:</th>
       <th style="background-color:#C4C4C4;width:20%;"><strong>Titular:</strong></th>	
       <th style="background-color:#C4C4C4;width:20%"><strong>Dependente:</strong></th>
-      <th style="background-color:#C4C4C4;width:19%">Tipo:</th>
-      <th style="background-color:#C4C4C4;width:17%">Médico:</th>
+      <th style="background-color:#C4C4C4;width:15%">Tipo:</th>
+      <th style="background-color:#C4C4C4;width:13%">Médico:</th>
       <th style="background-color:#C4C4C4;width:8%">Valor:</th>
+       <th style="background-color:#C4C4C4;width:8%">Desconto:</th>
       <th style="background-color:#C4C4C4;width:8%">Custo:</th>
       </tr>
     <c:forEach items="${vendas[status.index].procedimento}" var="procedimento" >
@@ -67,12 +68,13 @@
       <td>${procedimento.tipo}</td>
       <td>${procedimento.medico}</td>
       <td><fmt:setLocale value="pt-BR" /><fmt:formatNumber value="${procedimento.valor}" type="currency"/></td>
-      
+      <td><fmt:setLocale value="pt-BR" /><fmt:formatNumber value="${procedimento.desconto}" type="currency"/></td>
       <td><fmt:setLocale value="pt-BR" /><fmt:formatNumber value="${procedimento.precoCusto}" type="currency"/></td>
       </tr>
 	</c:forEach>
-      </tbody>
+
 	</c:forEach>
+      </tbody>
    
 </table>
 <div class="float-right border border-success bg-success rounded" style="padding-top:5px;padding-left:20px;padding-right: 20px" >

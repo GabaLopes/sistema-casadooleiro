@@ -165,7 +165,7 @@
 				<div class="input-group-prepend">
 	    		<span class="input-group-text" id="basic-addon1">CH</span>
 	  			</div>
-				<input type="text" class="form-control" value="0" name="ch">
+				<input type="text" class="form-control" value="0" name="chString">
 			</div>
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.br.simfini.models.Cliente;
+import com.br.simfini.models.Dependente;
 
 
 
@@ -28,7 +29,7 @@ public class ClienteDAO {
 	}
 	
 	public List<Cliente> listaCliente(){
-		return manager.createQuery("select distinct(c) from Cliente c left join fetch c.dependente ",Cliente.class).getResultList();
+		return manager.createQuery("select distinct(c) from Cliente c left join fetch c.dependente",Cliente.class).getResultList();
 	}
 	
 	public List<Cliente> lista() {
@@ -43,6 +44,12 @@ public class ClienteDAO {
 					.getSingleResult();
 		}
 	
+	public Cliente findDependente(String nome) {
+		return manager.createQuery("select distinct(c) from Cliente c inner join c.dependente d"
+					+ " where d.nome= :nome" , Cliente.class)
+					.setParameter("nome", nome)
+					.getSingleResult();
+		}
 	
 	public void excluirCliente(Cliente cliente) {
 			
@@ -60,12 +67,9 @@ public class ClienteDAO {
 		
 	}
 
-	public Cliente finds(int id) {
-		return manager.createQuery("select distinct(c) from Cliente c left join fetch c.dependente"
-				+ " where c.id= :id" , Cliente.class)
-				.setParameter("id", id)
-				.getSingleResult();
-	}
-
+	
+	
+	 
+	
 	
 }

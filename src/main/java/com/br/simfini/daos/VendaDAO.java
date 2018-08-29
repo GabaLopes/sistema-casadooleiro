@@ -23,39 +23,62 @@ public class VendaDAO {
 		manager.persist(venda);
 		
 	}
-
-	public List<Venda> listaVendas() {
-		return manager.createQuery("select  distinct(v) from Venda v join fetch v.procedimento where dataCompra between '2018-05-02' and '2018-05-05' and clinica='sermec'",Venda.class).getResultList();
+	
+	public void removerVenda(Venda venda) {
+		Venda merge = manager.merge(venda);
+		manager.remove(merge);
 		
 	}
 
+	public List<Venda> listaVendas() {
+		return manager.createQuery("select v from Venda v join fetch v.procedimento group by v.dataCompra ",Venda.class).getResultList();
+		
+	}
+	
+	
+
 	public List<Venda> listaRelatorio(String dataInicial, String dataFinal, String clinica) {
-		return manager.createQuery("select distinct(v) from Venda v left join fetch v.procedimento where dataCompra>= :dataInicial and dataCompra <= :dataFinal and clinica=:clinica",Venda.class).setParameter("dataInicial", dataInicial)
+		return manager.createQuery("select v from Venda v inner join v.procedimento p where p.clinica=:clinica and dataCompra>= :dataInicial and dataCompra <= :dataFinal group by v.dataCompra " ,Venda.class).setParameter("dataInicial", dataInicial)
 				.setParameter("dataFinal", dataFinal).setParameter("clinica", clinica).getResultList();
 		
 	}
 
 	public List<Venda> listaRelatorioGeral(String dataInicial, String dataFinal) {
 		
-		return manager.createQuery("select distinct(v) from Venda v left join fetch v.procedimento where dataCompra>= :dataInicial and dataCompra <= :dataFinal ",Venda.class).setParameter("dataInicial", dataInicial)
+		return manager.createQuery("select v from Venda v inner join v.procedimento p where dataCompra>= :dataInicial and dataCompra <= :dataFinal group by v.dataCompra",Venda.class).setParameter("dataInicial", dataInicial)
 				.setParameter("dataFinal", dataFinal).getResultList();
 		
 	}
+   
 	
 	public Venda listaVenda(int id){
-		return manager.createQuery("select distinct(v) from Venda join fetch v.procedimento where id=:id",Venda.class).setParameter("id", id).getSingleResult();
+		return manager.createQuery("select v from Venda v inner join v.procedimento where id=:id group by v.dataCompra",Venda.class).setParameter("id", id).getSingleResult();
 	}
 	
-	public List<Venda> vendaDiaDinheiro(String data,String data2){
-		return manager.createQuery("select distinct(v) from Venda v left join fetch v.procedimento where dataCompra>=:data and dataCompra<:data2 and tipoPagamento='dinheiro'",Venda.class).setParameter("data", data).setParameter("data2", data2).getResultList();
+	public List<Venda> listaVendaCartao() {
+		return manager.createQuery("select v from Venda v inner join v.procedimento where tipoPagamento='cartao'",Venda.class).getResultList();
 	}
-	public List<Venda> vendaDiaCartao(String data,String data2){
-		return manager.createQuery("select distinct(v) from Venda v left join fetch v.procedimento where dataCompra>=:data and dataCompra<:data2 and tipoPagamento='cartão'",Venda.class).setParameter("data", data).setParameter("data2", data2).getResultList();
-	}
+	
 	
 	public List<Venda> listaVendasCaixa(String data) {
-		return manager.createQuery("select distinct (v) from Venda v join fetch v.procedimento where dataCompra=:data",Venda.class).setParameter("data", data).getResultList();
+		return manager.createQuery("select v from Venda v inner join v.procedimento where dataCompra=:data group by v.dataCompra",Venda.class).setParameter("data", data).getResultList();
 		
+	}
+
+	public List<Venda> listaRelatorioEmpresa(String dataInicial, String dataFinal, String empresa) {
+		return manager.createQuery("select v from Venda v inner join v.procedimento where dataCompra>= :dataInicial and dataCompra <= :dataFinal and empresa=:empresa group by v.dataCompra",Venda.class).setParameter("dataInicial", dataInicial)
+				.setParameter("dataFinal", dataFinal).setParameter("empresa", empresa).getResultList();
+		
+	}
+
+	public void atualiza(Venda venda) {
+		manager.merge(venda);
+		
+	}
+
+	public List<Venda> listaRelatorioCliente(String dataInicial, String dataFinal, String cliente) {
+		return manager.createQuery("select v from Venda v inner join v.procedimento where dataCompra>= :dataInicial and dataCompra <= :dataFinal and cliente=:cliente group by v.dataCompra",Venda.class).setParameter("dataInicial", dataInicial)
+				.setParameter("dataFinal", dataFinal).setParameter("cliente", cliente).getResultList();
 	}
 
 	

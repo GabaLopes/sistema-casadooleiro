@@ -77,6 +77,37 @@
 		</form:form>
 	</div>
 	</div>	
+	<div class="card shadow p-3 mb-5 bg-white rounded">
+	<div class="card-header" style="background-color:#24244E;"><h6 class="text-light">Relátorio por Cliente</h6></div>
+		<div class="card-body">
+		<form:form target="_blank" servletRelativeAction="/controlemembros/relatorio/relatorioporcliente" method="post">
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+	    	<span class="input-group-text" id="basic-addon1">Data Inicial</span>
+	  		</div>
+	  		<input type="date" class="form-control" name="dataIni">
+  		</div>
+  		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+	    	<span class="input-group-text" id="basic-addon1">Data Final</span>
+	  		</div>
+	  		<input type="date" class="form-control" name="dataFim">
+  		</div>
+  		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+	    	<span class="input-group-text" id="basic-addon1">Cliente</span>
+	  		</div>
+	  		<select class="form-control" name="cliente">
+	  		<c:forEach items="${clientes}" var="cliente">
+	  			<option value="${cliente.nome}">${cliente.nome}</option>
+	  		</c:forEach>
+	  		</select>
+  		</div>
+  		<button type="submit" class="btn btn-success">Gerar</button>
+		</form:form>
+	</div>
+	</div>
+	
 </div>
 <div class="col-md-4">
 <div class="card shadow p-3 mb-5 bg-white rounded">
@@ -100,8 +131,38 @@
 	</div>
 	</div>	
 </div>
-<div class="col-md-4"></div>
-
+<div class="col-md-4">
+<div class="card shadow p-3 mb-5 bg-white rounded">
+	<div class="card-header" style="background-color:#24244E;"><h6 class="text-light">Relátorio por Empresa</h6></div>
+		<div class="card-body">
+		<form:form target="_blank" servletRelativeAction="/controlemembros/relatorio/relatorioporempresa" method="post">
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+	    	<span class="input-group-text" id="basic-addon1">Data Inicial</span>
+	  		</div>
+	  		<input type="date" class="form-control" name="dataIni">
+  		</div>
+  		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+	    	<span class="input-group-text" id="basic-addon1">Data Final</span>
+	  		</div>
+	  		<input type="date" class="form-control" name="dataFim">
+  		</div>
+  		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+	    	<span class="input-group-text" id="basic-addon1">Empresa</span>
+	  		</div>
+	  		<select class="form-control" name="empresa">
+	  		<c:forEach items="${vendas}" var="venda">
+	  			<option value="${venda.empresa}">${venda.empresa}</option>
+	  		</c:forEach>
+	  		</select>
+  		</div>
+  		<button type="submit" class="btn btn-success">Gerar</button>
+		</form:form>
+	</div>
+	</div>
+</div>
 </div>
 </div>
 </body>

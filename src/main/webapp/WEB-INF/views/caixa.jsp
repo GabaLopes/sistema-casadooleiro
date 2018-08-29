@@ -24,6 +24,7 @@
 	<script src="${jsPath}/jquery.min.js"></script>
 	<link href="${cssPath}/w3.css"  rel="stylesheet" type="text/css" />
 	<c:url value="/resources/js" var="jsPath"/>
+	<c:url value="/resources/imagens" var="imgPath"/>
 	
 	<script type="text/javascript">
             function calcular(){
@@ -40,7 +41,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-sm  navbar-dark fixed-top" style="background-color: #24244E;" >
-  <a class="navbar-brand" href="/controlemembros/" style="width: 15%;"><img src="http://192.168.0.113:8080/controlemembros/resources/imagens/casadooleiro.png" width="100%"></a>
+  <a class="navbar-brand" href="/controlemembros/" style="width: 15%;"><img src="${imgPath}/casadooleiro.png" width="100%"></a>
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link text-light" href="carrinho/atendimento">Atendimento</a>

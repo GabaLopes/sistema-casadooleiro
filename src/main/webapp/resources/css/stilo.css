@@ -1,3 +1,10 @@
+.botao{
+	background-color:green;
+	
+}
+.botao:hover{
+	background-color:red;
+}
 .lopes{
 	color:gray;
 }

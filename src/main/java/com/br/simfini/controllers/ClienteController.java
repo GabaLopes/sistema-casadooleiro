@@ -59,6 +59,7 @@ public class ClienteController {
 		
 		cliente.setDependente(list);
 		cliente.setNome(nome);
+		cliente.setEmpresa(empresa);
 		cliente.setTelefone(telefone);
 		cliente.setTelefone2(telefone2);
 		cliente.setBairro(bairro);
@@ -89,7 +90,7 @@ public class ClienteController {
 			String dependenteCpf,String dependenteCidade,String dependenteEndereco,String dependenteCep,String dependenteBairro,RedirectAttributes redirectAttributes) {
 		
 		
-		Cliente find = dao.finds(id);
+		Cliente find = dao.find(id);
 		
 		Dependente dependente2 = new Dependente();
 		dependente2.setNome(nome);

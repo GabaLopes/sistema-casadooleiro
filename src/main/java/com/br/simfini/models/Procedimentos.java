@@ -3,42 +3,42 @@ package com.br.simfini.models;
 import java.math.BigDecimal;
 
 import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Index;
 
 
 
 @Embeddable
 public class Procedimentos {
-
+	
 	
 	private String clinica;
 	private String tipo;
 	private BigDecimal precoCusto;
 	private BigDecimal valor;
-	private BigDecimal desconto;
 	private BigDecimal valorParticular;
 	private String medico;
 	private long amb;
-	private int ch;
+	private BigDecimal ch;
 	
 	
 	
-	public BigDecimal getDesconto() {
-		return desconto;
-	}
-	public void setDesconto(BigDecimal desconto) {
-		this.desconto = desconto;
-	}
+	
 	public long getAmb() {
 		return amb;
 	}
 	public void setAmb(long amb) {
 		this.amb = amb;
 	}
-	public int getCh() {
+	public BigDecimal getCh() {
 		return ch;
 	}
-	public void setCh(int ch) {
-		this.ch = ch;
+	public void setCh(BigDecimal ch2) {
+		this.ch = ch2;
 	}
 	public String getClinica() {
 		return clinica;

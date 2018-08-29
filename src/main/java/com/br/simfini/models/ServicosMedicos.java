@@ -17,7 +17,7 @@ public class ServicosMedicos {
 	private int id;
 	private String clinica;
 	private String tipo;
-	private int ch;
+	private BigDecimal ch;
 	private long amb;
 	private BigDecimal valorClinica;
 	private BigDecimal valorOleiro;
@@ -56,10 +56,10 @@ public class ServicosMedicos {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public int getCh() {
+	public BigDecimal getCh() {
 		return ch;
 	}
-	public void setCh(int ch) {
+	public void setCh(BigDecimal ch) {
 		this.ch = ch;
 	}
 	

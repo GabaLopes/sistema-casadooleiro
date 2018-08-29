@@ -27,16 +27,31 @@ public class CarrinhoCompras implements Serializable {
 	
 	private String telefoneDependente;
 	
+	private String empresa;
+	
+	
 	private List<Procedimentos> itens = new ArrayList<>();
 	
 	
-	public void add(Procedimentos item){
-		System.out.println(item);		
+	public void add(Procedimentos item ){
+		System.out.println(item.hashCode());
 		itens.add(item);
 	}
 	
 	
 	
+	public String getEmpresa() {
+		return empresa;
+	}
+
+
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+
+
+
 	public String getTelefoneTitular() {
 		return telefoneTitular;
 	}
@@ -99,16 +114,13 @@ public class CarrinhoCompras implements Serializable {
 	public BigDecimal getValor(Procedimentos item) {
 		return item.getValor();
 	}
-	public BigDecimal getDesconto(Procedimentos item) {
-		return item.getDesconto();
-	}
+	
 	
 	public BigDecimal getTotal(){
 		BigDecimal total = BigDecimal.ZERO;
 		for (Procedimentos item : itens) {
 			BigDecimal valor = getValor(item);
-			BigDecimal desconto = getDesconto(item);
-			total = total.add(valor.subtract(desconto));
+			total = total.add(valor);
 		}
 		return total;
 	}

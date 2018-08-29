@@ -1,6 +1,7 @@
 package com.br.simfini.models;
 
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -24,24 +25,54 @@ public class Venda {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	
 	@DateTimeFormat
 	private Calendar dataCompra;
-	
 	private String cliente;
 	private String dependente;
-	private String tipoPagamento;
+	private String empresa;
+	private BigDecimal cartao = BigDecimal.ZERO;
+	private BigDecimal dinheiro = BigDecimal.ZERO;
+	private BigDecimal desconto = BigDecimal.ZERO;
+	private BigDecimal total;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	List<Procedimentos> procedimento = new ArrayList<>();
 	
 	
 	
-	public String getTipo() {
-		return tipoPagamento;
+	public BigDecimal getDesconto() {
+		return desconto;
 	}
-	public void setTipo(String tipoPagamento) {
-		this.tipoPagamento = tipoPagamento;
+	public void setDesconto(BigDecimal desconto) {
+		this.desconto = desconto;
 	}
+	public BigDecimal getTotal() {
+		return total;
+	}
+	public void setTotal(BigDecimal total) {
+		this.total = total;
+	}
+	public BigDecimal getCartao() {
+		return cartao;
+	}
+	public void setCartao(BigDecimal cartao) {
+		this.cartao = cartao;
+	}
+	public BigDecimal getDinheiro() {
+		return dinheiro;
+	}
+	public void setDinheiro(BigDecimal dinheiro) {
+		this.dinheiro = dinheiro;
+	}
+	
+	public String getEmpresa() {
+		return empresa;
+	}
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+	
 	public List<Procedimentos> getProcedimento() {
 		return procedimento;
 	}

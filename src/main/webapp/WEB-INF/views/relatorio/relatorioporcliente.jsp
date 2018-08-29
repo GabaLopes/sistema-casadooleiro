@@ -30,13 +30,13 @@
 	
 	
 	
-<title>Relatório Mensal - Clínica</title>
+<title>Relatório Vendas - Empresa </title>
 </head>
 <body>
 <br>
 <div align="center"><img id="image-1" alt="" src="../resources/imagens/logo.png" width="15%"/>
 
-<h4>Relátorio Mensal - ${vendas[0].procedimento[0].clinica}</h4>
+<h4>Relátorio Vendas - ${cliente }</h4>
 <p><strong><fmt:formatDate pattern="dd/MM/yyyy" value="${dataini}"/></strong> a <strong><fmt:formatDate pattern="dd/MM/yyyy" value="${datafim}"/></strong></p>
 </div>
 
@@ -46,19 +46,19 @@
 <br>
 <table class="table table-bordered">
   <thead>
-    
-  </thead>
-  	<c:forEach items="${vendas}" varStatus="status">
-  	<tbody>
     <tr>
       <th style="background-color:#C4C4C4; width:13%">Data Atendimento:</th>
       <th style="background-color:#C4C4C4;width:20%;"><strong>Titular:</strong></th>	
       <th style="background-color:#C4C4C4;width:20%"><strong>Dependente:</strong></th>
-      <th style="background-color:#C4C4C4;width:19%">Tipo:</th>
-      <th style="background-color:#C4C4C4;width:17%">Médico:</th>
+      <th style="background-color:#C4C4C4;width:15%">Tipo:</th>
+      <th style="background-color:#C4C4C4;width:13%">Médico:</th>
       <th style="background-color:#C4C4C4;width:8%">Valor:</th>
-      <th style="background-color:#C4C4C4;width:8%">Custo:</th>
+       
       </tr>
+    
+  </thead>
+  	<c:forEach items="${vendas}" varStatus="status">
+  <tbody>
     <c:forEach items="${vendas[status.index].procedimento}" var="procedimento" >
      <tr>
    	  <td><fmt:formatDate pattern="dd/MM/yyyy" value="${vendas[status.index].dataCompra.time}"/></td>
@@ -67,22 +67,18 @@
       <td>${procedimento.tipo}</td>
       <td>${procedimento.medico}</td>
       <td><fmt:setLocale value="pt-BR" /><fmt:formatNumber value="${procedimento.valor}" type="currency"/></td>
-      
-      <td><fmt:setLocale value="pt-BR" /><fmt:formatNumber value="${procedimento.precoCusto}" type="currency"/></td>
       </tr>
 	</c:forEach>
+
       </tbody>
+       
 	</c:forEach>
-   
 </table>
-<div class="float-right border border-success bg-success rounded" style="padding-top:5px;padding-left:20px;padding-right: 20px" >
-<h6>Lucro: <strong><fmt:setLocale value="pt-BR" /><fmt:formatNumber value="${lucro}" type="currency"/></strong></h6>
-</div>
-<div class="float-right border border-danger bg-danger rounded" style="padding-top:5px;padding-left:20px;padding-right: 20px" >
-<h6>Total Custo: <strong><fmt:setLocale value="pt-BR" /><fmt:formatNumber value="${custo}" type="currency"/></strong></h6>
+<div class="float-right border border-primary bg-primary rounded" style="padding-top:5px;padding-left:20px;padding-right: 20px" >
+<h6>Total : <strong><fmt:setLocale value="pt-BR" /><fmt:formatNumber value="${total}" type="currency"/></strong></h6>
 </div>
 <div class="float-right border border-primary bg-primary rounded" style="padding-top:5px;padding-left:20px;padding-right: 20px" >
-<h6>Total Entrada: <strong><fmt:setLocale value="pt-BR" /><fmt:formatNumber value="${total}" type="currency"/></strong></h6>
+<h6>Desconto: <strong><fmt:setLocale value="pt-BR" /><fmt:formatNumber value="${desconto}" type="currency"/></strong></h6>
 </div>
 
 </body>

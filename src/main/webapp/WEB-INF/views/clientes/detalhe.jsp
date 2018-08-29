@@ -20,6 +20,7 @@
     <script src="${jsPath }/jquery-3.3.1.slim.min.js"></script>
     <c:url value="/resources/js" var="jsPath"/>
 	<script src="${jsPath}/popper.min.js"></script>
+	<c:url value="/resources/imagens" var="imgPath"/>
 	
 	<script type="text/javascript">
 	        function mascar(cpf){ 
@@ -39,7 +40,7 @@
 </head>
 <body class="container-fluid">
 <nav class="navbar navbar-expand-sm  navbar-dark fixed-top" style="background-color: #24244E;" >
-  <a class="navbar-brand" href="/controlemembros/" style="width: 15%;"><img src="http://127.0.0.1:8080/controlemembros/resources/imagens/casadooleiro.png" width="100%"></a>
+  <a class="navbar-brand" href="/controlemembros/" style="width: 15%;"><img src="${imgPath}/casadooleiro.png" width="100%"></a>
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link text-light" href="../../carrinho/atendimento">Atendimento</a>
